@@ -103,7 +103,7 @@ namespace PersonelKayıt
             guncelle.Parameters.AddWithValue("@p5", cmbDepartment.SelectedValue);
             guncelle.Parameters.AddWithValue("@p6", textBox1.Text);
             guncelle.ExecuteNonQuery();
-            baglanti.Close();   
+            baglanti.Close();    
             MessageBox.Show("Personel Güncellendi.");
             EslemeFonk();
         }

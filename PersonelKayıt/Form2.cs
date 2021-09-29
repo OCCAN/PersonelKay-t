@@ -37,9 +37,9 @@ namespace PersonelKayıt
                 
                 Form1 frm = new Form1();
                 frm.Show();
-                this.Close(); 
+                this.Close();    
                 
-
+                 
             }
             else
             {
