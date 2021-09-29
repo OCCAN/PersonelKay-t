@@ -37,7 +37,7 @@ namespace PersonelKayıt
                 
                 Form1 frm = new Form1();
                 frm.Show();
-                this.Close();
+                this.Close(); 
                 
 
             }
@@ -53,9 +53,9 @@ namespace PersonelKayıt
             Application.Exit();
         }
 
-         
+        private void label2_Click(object sender, EventArgs e)
+        {
 
-
-
+        }
     }
 }

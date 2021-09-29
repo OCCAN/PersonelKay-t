@@ -174,7 +174,7 @@ namespace PersonelKayıt
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(190, 72);
+            this.label4.Location = new System.Drawing.Point(187, 75);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 13);
             this.label4.TabIndex = 13;
