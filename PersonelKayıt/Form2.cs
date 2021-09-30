@@ -26,15 +26,15 @@ namespace PersonelKayıt
         {
             string user = txtUser.Text;
             string pass = txtPass.Text;
-            con = new SqlConnection("Data Source = TRALPC5039; Initial Catalog = PersonelKayıtDB; User ID = sa; Password = @limex2017");
+            con = new SqlConnection("Data Source = TRALPC5039; Initial Catalog = PersonelKayıtDB; User ID = sa; Password = @limex2017");//Kullanıcı adı ve şifreyi veri tabanından aldığımız için öncelikle sql bağlantımızı bir değişkene atıyoruz.
             cmd = new SqlCommand();
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "SELECT * FROM LoginTbl where [User]='" + txtUser.Text + "' AND PassWord='" + txtPass.Text + "'";
+            cmd.CommandText = "SELECT * FROM LoginTbl where [User]='" + txtUser.Text + "' AND PassWord='" + txtPass.Text + "'";//Kullanıcı adı ve şifremizi SQL tablomuzdan seçiyoruz.
             dr = cmd.ExecuteReader();
             if (dr.Read())
             {
-                
+                //Eğer kullanıcı adı ve şifremiz doğru ise Form1'i yani Personel kayıt uygulamıza giriş yapıyoruz.
                 Form1 frm = new Form1();
                 frm.Show();
                 this.Close();     
@@ -43,6 +43,7 @@ namespace PersonelKayıt
             }
             else
             {
+                //yanlış olma durumunda kullanıcıya uyarı veriyoruz.
                 MessageBox.Show("Kullanıcı adını ve şifrenizi kontrol ediniz.");
             }
             con.Close();
@@ -50,12 +51,9 @@ namespace PersonelKayıt
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Application.Exit();//Çıkış butonuna basıldığında progmamımızın çalışmasını duruduruyoruz.
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+         
     }
 }

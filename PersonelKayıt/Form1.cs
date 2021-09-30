@@ -17,28 +17,29 @@ namespace PersonelKayıt
         {
             InitializeComponent();
         }
-        SqlConnection baglanti = new SqlConnection("Data Source=TRALPC5039;Initial Catalog=PersonelKayıtDB;User ID=sa;Password=@limex2017");
-      
+        SqlConnection baglanti = new SqlConnection("Data Source=TRALPC5039;Initial Catalog=PersonelKayıtDB;User ID=sa;Password=@limex2017"); //sql bağlantısını bir değişkene atıyoruz.
+        
         private void Form1_Load(object sender, EventArgs e)
         {
            
             
-            this.bolumTblTableAdapter.Fill(this.personelKayıtDBDataSet2.BolumTbl);
+            this.bolumTblTableAdapter.Fill(this.personelKayıtDBDataSet2.BolumTbl);//combobox'a veri attığımız için otomatik gelen kod.
             
-            EslemeFonk();
+            EslemeFonk(); //Uygulama açıldığında çalışır çalışmaz datagridview'da listelenmesi için hazırladığımız fonksiyonu burada çağırıyoruz.
             
             
         }
 
         private void ListeleBtn_Click(object sender, EventArgs e)
         {
-            EslemeFonk();
+            EslemeFonk(); //Listele butonuna basıldığında listelemesi için fonksiyonumuzu çağırıyoruz. 
         }
 
-        void EslemeFonk()
+        void EslemeFonk()//Bu fonksiyonu ayrı olarak yazmamızın sebebi diğer butonlara basıldığında eklenen, güncellenen yahut siinen personellerin değişiklikleri işlemi yapar yapmaz tabloda görmek.
         {
             baglanti.Open();
-            SqlCommand cmd = new SqlCommand("SELECT p.Personel_ID, p.Ad, p.Soyad, p.DogumTarihi, p.GirisTarihi, b.BolumIsmi FROM PersonelTbl p INNER JOIN BolumTbl b ON p.Bolum_ID = b.Bolum_ID ", baglanti);
+            SqlCommand cmd = new SqlCommand("SELECT p.Personel_ID, p.Ad, p.Soyad, p.DogumTarihi, p.GirisTarihi, b.BolumIsmi FROM PersonelTbl p INNER JOIN BolumTbl b ON p.Bolum_ID = b.Bolum_ID ", baglanti); //INSERT komutunu kullanarak SQL'de oluşturduğumuz iki tablodan istediğim verileri götermek için yazılan komut.
+            //SQL tablomuzu dataGridView'a doldurmamızı sağlayan kodlar;
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -53,7 +54,7 @@ namespace PersonelKayıt
         private void EkleBtn_Click(object sender, EventArgs e)
         {
             baglanti.Open();
-            SqlCommand komut = new SqlCommand("Insert into PersonelTbl (Ad, Soyad, DogumTarihi, GirisTarihi, Bolum_ID) values(@p1, @p2, @p3, @p4 ,@p5)", baglanti);
+            SqlCommand komut = new SqlCommand("Insert into PersonelTbl (Ad, Soyad, DogumTarihi, GirisTarihi, Bolum_ID) values(@p1, @p2, @p3, @p4 ,@p5)", baglanti);//INSERT komutu kullanılarak textBox'a yazdığımız, DateTimePicker'da seçtiğimiz ve combobox'ta seçtiğimiz verilerin SQL tablomuza kaydediyoruz.
             komut.Parameters.AddWithValue("@p1", txtAd.Text);
             komut.Parameters.AddWithValue("@p2", txtSoyad.Text);
             komut.Parameters.AddWithValue("@p3", BirthDayPicker.Value);
@@ -70,6 +71,7 @@ namespace PersonelKayıt
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            //CellDoubleClick Event'i dataGridView'da listelenen personellerden herhangi birine çift tıklandığında, üstünde bulunan boş kısımların doldurulmasına yarıyor. Böylelikle güncelleme ve silme işlemini daha kolay yapabiliyoruz.
             int secim = dataGridView1.SelectedCells[0].RowIndex;
             txtAd.Text = dataGridView1.Rows[secim].Cells[1].Value.ToString();
             txtSoyad.Text = dataGridView1.Rows[secim].Cells[2].Value.ToString();
@@ -78,13 +80,13 @@ namespace PersonelKayıt
             cmbDepartment.Text = dataGridView1.Rows[secim].Cells[5].Value.ToString();
             textBox1.Text = dataGridView1.Rows[secim].Cells[0].Value.ToString();
             EslemeFonk();
-
+            
         }
         
         private void SilBtn_Click(object sender, EventArgs e)
         {
             baglanti.Open();
-            SqlCommand sil = new SqlCommand("Delete from PersonelTbl Where Personel_ID = @p1", baglanti);
+            SqlCommand sil = new SqlCommand("Delete from PersonelTbl Where Personel_ID = @p1", baglanti);//DELETE komutu sayesinde doubleClick event ile seçtiğimiz personeli Sil butonu ile silebiliyoruz.
             sil.Parameters.AddWithValue("@p1", textBox1.Text);
             sil.ExecuteNonQuery();
             baglanti.Close();
@@ -95,7 +97,7 @@ namespace PersonelKayıt
         private void GüncelleBtn_Click(object sender, EventArgs e)
         {
             baglanti.Open();
-            SqlCommand guncelle = new SqlCommand("Update PersonelTbl Set Ad=@p1, Soyad=@p2, DogumTarihi=@p3, GirisTarihi=@p4, Bolum_ID=@p5 where Personel_ID = @p6", baglanti);
+            SqlCommand guncelle = new SqlCommand("Update PersonelTbl Set Ad=@p1, Soyad=@p2, DogumTarihi=@p3, GirisTarihi=@p4, Bolum_ID=@p5 where Personel_ID = @p6", baglanti);// Update komutu sayesinde seçili personelde yapacğımız işlemleri seçtikten sonra yukarıdaki kısımdan değiştirip güncelle butonuna basarak güncelleyebiliyoruz.
             guncelle.Parameters.AddWithValue("@p1", txtAd.Text);            
             guncelle.Parameters.AddWithValue("@p2", txtSoyad.Text);
             guncelle.Parameters.AddWithValue("@p3", BirthDayPicker.Value);
@@ -107,23 +109,12 @@ namespace PersonelKayıt
             MessageBox.Show("Personel Güncellendi.");
             EslemeFonk();
         }
-
-        private void fillToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.personelTblTableAdapter.Fill(this.personelKayıtDBDataSet.PersonelTbl);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
+        
+        
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            Application.Exit();//Uygulamamızı sağ üstte bulunan çarpıdan kapattığımızda arka planda çalışmasını önlemek amacı ile bu Even içine bu fonksiyonu çağırarak, uygulamamızın arka planda çalışmasını engelliyoruz.
         }
     }
 }

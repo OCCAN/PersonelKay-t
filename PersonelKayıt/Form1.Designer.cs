@@ -60,8 +60,6 @@ namespace PersonelKayıt
             this.personelKayıtDBDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.personelTblBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.personelTblTableAdapter1 = new PersonelKayıt.PersonelKayıtDBDataSet1TableAdapters.PersonelTblTableAdapter();
-            this.fillToolStrip = new System.Windows.Forms.ToolStrip();
-            this.fillToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.personelTblBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bolumTblBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personelKayıtDBDataSet2)).BeginInit();
@@ -74,7 +72,6 @@ namespace PersonelKayıt
             ((System.ComponentModel.ISupportInitialize)(this.personelKayıtDBDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personelKayıtDBDataSet1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personelTblBindingSource1)).BeginInit();
-            this.fillToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.personelTblBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -311,24 +308,6 @@ namespace PersonelKayıt
             // 
             this.personelTblTableAdapter1.ClearBeforeFill = true;
             // 
-            // fillToolStrip
-            // 
-            this.fillToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fillToolStripButton});
-            this.fillToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.fillToolStrip.Name = "fillToolStrip";
-            this.fillToolStrip.Size = new System.Drawing.Size(726, 25);
-            this.fillToolStrip.TabIndex = 23;
-            this.fillToolStrip.Text = "fillToolStrip";
-            // 
-            // fillToolStripButton
-            // 
-            this.fillToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.fillToolStripButton.Name = "fillToolStripButton";
-            this.fillToolStripButton.Size = new System.Drawing.Size(26, 22);
-            this.fillToolStripButton.Text = "Fill";
-            this.fillToolStripButton.Click += new System.EventHandler(this.fillToolStripButton_Click);
-            // 
             // personelTblBindingSource2
             // 
             this.personelTblBindingSource2.DataMember = "PersonelTbl";
@@ -339,7 +318,6 @@ namespace PersonelKayıt
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(726, 456);
-            this.Controls.Add(this.fillToolStrip);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -363,8 +341,6 @@ namespace PersonelKayıt
             ((System.ComponentModel.ISupportInitialize)(this.personelKayıtDBDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personelKayıtDBDataSet1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personelTblBindingSource1)).EndInit();
-            this.fillToolStrip.ResumeLayout(false);
-            this.fillToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.personelTblBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -401,8 +377,6 @@ namespace PersonelKayıt
         private System.Windows.Forms.BindingSource personelKayıtDBDataSet1BindingSource;
         private System.Windows.Forms.BindingSource personelTblBindingSource1;
         private PersonelKayıtDBDataSet1TableAdapters.PersonelTblTableAdapter personelTblTableAdapter1;
-        private System.Windows.Forms.ToolStrip fillToolStrip;
-        private System.Windows.Forms.ToolStripButton fillToolStripButton;
         private System.Windows.Forms.BindingSource personelTblBindingSource2;
     }
 }
